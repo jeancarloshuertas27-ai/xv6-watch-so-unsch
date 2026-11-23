@@ -101,6 +101,7 @@ extern uint64 sys_mknod(void);
 extern uint64 sys_unlink(void);
 extern uint64 sys_link(void);
 extern uint64 sys_mkdir(void);
+extern uint64 sys_sysinfo(void);
 extern uint64 sys_close(void);
 extern uint64 sys_getprocinfo(void);
 extern uint64 sys_sync(void);
@@ -133,6 +134,7 @@ static uint64 (*syscalls[])(void) = {
   [SYS_getprocinfo] sys_getprocinfo,
   [SYS_sync]    = sys_sync,
   // clang-format on
+[SYS_sysinfo] sys_sysinfo,
 };
 
 void
