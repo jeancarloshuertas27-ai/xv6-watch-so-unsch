@@ -148,6 +148,7 @@ found:
   p->context.sp = p->kstack + PGSIZE;
   p->rtime = 0;
   p->syscall_count = 0;
+  p->tracemask = 0;
 
   return p;
 }
@@ -280,6 +281,8 @@ kfork(void)
 
   // copy saved user registers.
   *(np->trapframe) = *(p->trapframe);
+  // Heredar la mascara de seguimiento del proceso padre.
+  np->tracemask = p->tracemask;
 
   // Cause fork to return 0 in the child.
   np->trapframe->a0 = 0;
