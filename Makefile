@@ -81,6 +81,12 @@ CFLAGS += -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf
 CFLAGS += -I.
 CFLAGS += $(shell $(CC) -fno-stack-protector -E -x c /dev/null >/dev/null 2>&1 && echo -fno-stack-protector)
 
+# testwatch: habilita los casos mem/err en cuanto el modulo sysinfo (Nivel 3)
+# este integrado en kernel/syscall.h.
+ifeq ($(shell grep -q 'SYS_sysinfo' kernel/syscall.h && echo 1),1)
+CFLAGS += -DHAVE_SYSINFO
+endif
+
 # Disable PIE when possible (for Ubuntu 16.10 toolchain)
 ifneq ($(shell $(CC) -dumpspecs 2>/dev/null | grep -e '[^f]no-pie'),)
 CFLAGS += -fno-pie -no-pie
@@ -148,6 +154,7 @@ UPROGS=\
 	$U/_wc\
 	$U/_zombie\
 	$U/_ps\
+	$U/_testwatch\
 	$U/_logstress\
 	$U/_forphan\
 	$U/_dorphan\
