@@ -4,6 +4,7 @@
 #include "riscv.h"
 #include "spinlock.h"
 #include "proc.h"
+#include "pstat.h"
 #include "defs.h"
 
 struct cpu cpus[NCPU];
@@ -145,6 +146,8 @@ found:
   memset(&p->context, 0, sizeof(p->context));
   p->context.ra = (uint64)forkret;
   p->context.sp = p->kstack + PGSIZE;
+  p->rtime = 0;
+  p->syscall_count = 0;
 
   return p;
 }
@@ -700,4 +703,36 @@ procdump(void)
     printk("%d %s %s", p->pid, state, p->name);
     printk("\n");
   }
+}
+
+int
+getprocinfo(uint64 addr)
+{
+  struct proc *my = myproc();
+  struct pstat *st = (struct pstat *)kalloc();
+  if(st == 0)
+    return -1;
+  memset(st, 0, sizeof(*st));
+
+  acquire(&wait_lock);
+  for(int i = 0; i < NPROC; i++){
+    struct proc *p = &proc[i];
+    acquire(&p->lock);
+    if(p->state != UNUSED){
+      st->inuse[i] = 1;
+      st->pid[i] = p->pid;
+      st->ppid[i] = p->parent ? p->parent->pid : 0;
+      st->state[i] = p->state;
+      st->sz[i] = p->sz;
+      st->rtime[i] = p->rtime;
+      st->syscalls[i] = p->syscall_count;
+      safestrcpy(st->name[i], p->name, sizeof(st->name[i]));
+    }
+    release(&p->lock);
+  }
+  release(&wait_lock);
+
+  int res = copyout(my->pagetable, my->sz, addr, (char *)st, sizeof(*st));
+  kfree(st);
+  return res;
 }

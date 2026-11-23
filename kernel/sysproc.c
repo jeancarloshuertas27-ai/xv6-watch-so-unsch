@@ -110,3 +110,10 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+uint64
+sys_getprocinfo(void)
+{
+  uint64 addr;
+  argaddr(0, &addr);
+  return getprocinfo(addr);
+}
