@@ -153,6 +153,7 @@ UPROGS=\
 	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
+	$U/_sysstat\
 	$U/_ps\
 	$U/_testwatch\
 	$U/_logstress\
