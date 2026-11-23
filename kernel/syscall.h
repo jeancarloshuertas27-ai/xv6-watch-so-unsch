@@ -23,4 +23,3 @@
 #define SYS_sync   22
 #define SYS_getprocinfo 23
 #define SYS_sysinfo 24
-#define SYS_trace 25

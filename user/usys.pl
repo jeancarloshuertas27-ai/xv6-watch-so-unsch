@@ -45,4 +45,3 @@ entry("uptime");
 entry("sync");
 entry("getprocinfo");
 entry("sysinfo");
-entry("trace");
