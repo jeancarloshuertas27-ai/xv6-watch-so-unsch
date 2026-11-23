@@ -27,6 +27,7 @@ int pause(int);
 int uptime(void);
 int getprocinfo(struct pstat*);
 int sync(void);
+int trace(int);
 
 // ulib.c
 int stat(const char *, struct stat *);
