@@ -103,4 +103,5 @@ struct proc {
   char name[16];               // Process name (debugging)
   uint64 rtime;                // Ticks de CPU consumidos
   uint64 syscall_count;        // Total de syscalls ejecutadas
+  int tracemask;	       // Máscara para seguimiento de syscalls
 };
