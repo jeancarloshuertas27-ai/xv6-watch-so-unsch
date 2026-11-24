@@ -109,8 +109,12 @@ Los resultados de estas pruebas deberán confirmarse con las evidencias reales d
 
 ## 8. Documentación y presentación
 
-La monografía técnica se organizará en 11 secciones y la presentación de sustentación tendrá 10 diapositivas, de acuerdo con el manual operativo del proyecto.
+Todos los entregables finales del proyecto se encuentran publicados y organizados dentro de este repositorio:
+
+- **Monografía técnica (Entregable 1):** [`docs/Monografia_Proyecto_Final_xv6_Watch.pdf`](docs/Monografia_Proyecto_Final_xv6_Watch.pdf) — Documento completo en formato APA 7 (36 páginas), con las 11 secciones exigidas, 2 tablas y 16 figuras de evidencia.
+- **Presentación de sustentación (Entregable 4):** [`presentacion/xv6_Watch.pptx`](presentacion/xv6_Watch.pptx) — Presentación completa de 26 diapositivas con fundamento teórico, implementación por módulos, los 6 casos de prueba, errores corregidos y enlace al repositorio.
+- **Evidencias de compilación y pruebas (Entregable 3):** Carpeta [`evidencias/`](evidencias/) con capturas reales de compilación, ejecución en QEMU, casos de prueba y depuración.
 
 ## 9. Estado del proyecto
 
-Proyecto académico en desarrollo. La integración de módulos, las pruebas y sus resultados se documentarán conforme sean verificados por el equipo.
+**Proyecto finalizado e integrado en `main`.** Los tres módulos funcionales (`getprocinfo` + `ps`, `sysinfo` + `sysstat`, `trace` + `strace`) y la suite automatizada `testwatch` están compilando y verificados en Linux Ubuntu (VirtualBox) sobre QEMU, con los 6 casos de prueba (`CP-01` a `CP-06`) aprobados, commits individuales de los 5 integrantes y difusión pública realizada en LinkedIn.
